@@ -1,0 +1,87 @@
+\documentclass[prb,11pt,twocolumn]{revtex4-1}
+
+\usepackage{amsmath}
+\usepackage{verbatim} 
+
+\begin{document}
+
+\title{Using signal lag to find the distance between two sensors}
+\date{5th September 2020}
+
+\maketitle
+
+\section{Background}
+Two sensors located a distance $x\,\mathrm{m}$ apart sample the same sound signal every second. Sensor one outputs a vector $\mathbf{f}$ and sensor two outputs a vector $\mathbf{g}$.
+
+To find $x$, we must find where $\mathbf{f}$ and $\mathbf{g}$ overlap which gives us the time between the two sensors $\Delta t$. Given the sampling rate is constant $t_s=1$, and the speed of sounds is a known constant ($333\,\mathrm{m.s^{-1}}$), we have:
+
+\begin{align}
+    x &=333\,\left[\mathrm{m.s^{-1}}\right] \times \Delta t\,\left[\mathrm{s}\right] \nonumber \\
+      &=333\Delta t\,\left[\mathrm{m}\right].
+\end{align}
+
+To get $\Delta t$ we sample each signal, normalise and then take the cross-correlation  of each signal. the maximum cross-correlated value will reveal where the signals are aligned, and thus yield $\Delta t$.
+
+The normalised cross correlation $cc_{f,g}$ between $\mathbf{f}$ and $\mathbf{g}$ is given by:
+
+\begin{align}
+    cc_{f,g} &= \frac{\sum\limits_{i=0}^{n} f_i.g_i}{\sqrt{\sum\limits_{i=0}^{n}f_i^2.\sum\limits_{i=0}^{n}g_i^2}},
+\end{align}
+
+where $f_i\,\epsilon\,\mathbf{f}\: \forall\, i\,\epsilon\{0,1,\dots n_f \}$. Here $n_f$ is the length of $\mathbf{f}$. Similarly $g_i\,\epsilon\,\mathbf{g}\: \forall\, i\,\epsilon\{0,1,\dots n_g \}$ and $n_g$ is the length of $\mathbf{g}$, where $n=n_f=n_g$.
+
+% When the two signals overlap, that is for any matching element $f_i=g_{i+m}$, the above becomes:
+
+% \begin{align}
+%     cc_{f,g} &= \frac{\sum\limits_{i=0}^{n} f_i.g_{i+m}}{\sqrt{\sum\limits_{i=0}^{n}f_i^2.\sum\limits_{i=0}^{n}g_{i+m}^2}} \nonumber \\
+%     &= \frac{\sum\limits_{i=0}^{n} f_i^2}{\sqrt{\sum\limits_{i=0}^{n}f_i^2}} \nonumber \\
+%     &= 1. \nonumber
+% \end{align}
+
+% The above result saves me from searching for a maximum value in the cross correlation for each point at which it's calculated, and means I just have to look for $cc_{f,g}=1$ to find the $m$ for which $f_i=g_{i+m}$.
+
+\section{Approach}
+Both $\mathbf{f}$ and $\mathbf{g}$ are large, with $n_g = n_f = 176,401$, thus brute force methods were ruled out on my early 2015 \textit{MacBook Air}. Specifically I could not sample $\mathbf{f_s}$ (where $\mathbf{f_s} \subset \mathbf{f}$) and calculate the cross correlation $cc_{f_s,g}$ for the full length of $\mathbf{g}$.
+
+This limited me to calculating the cross-correlation for samples of $\mathbf{f}$ and $\mathbf{g}$. The question is thus: how to choose the right place to sample? Also while visual inspection of $\mathbf{f}$ and $\mathbf{g}$ show the signal is not repetitive, however I could not assume local repetition was completely absent from $\mathbf{f}$ (and $\mathbf{g}$).
+
+In the next paragraphs, I'll highlight sections of the code which are relevant in computing $\Delta t$. In NumPy a vector, say $\mathbf{f}$ has both values $f_i$ and an index $i$ I use to calculate $\Delta t$.
+
+To start I took a random sample (without replacement) of $0.5\%$ of indices in (\texttt{s1\_sample}) in \texttt{s1} ($\mathbf{f}$):
+
+\begin{verbatim}
+    s1_sample=np.random.choice(
+                 range(s1.shape[0]),
+                 floor(s1.shape[0]
+                       *0.005),
+                 replace=False).
+\end{verbatim}
+
+Where \texttt{floor(s1.shape[0]*0.005)} calculates the size of a $0.5\%$ sample of \texttt{s1} ($\mathbf{f}$). A $0.5\%$ was chosen to minimise computational time, while providing a big enough sample to yield reliable results. 
+
+With a random sample of indices in \texttt{s1}, I look in \texttt{s2} where \texttt{s2[i]=s1[j]} ($\mathbf{g_i}=\mathbf{f_j}$):
+
+\begin{verbatim}
+    s1_sample[
+        np.array(
+            [s1[s] in s2 
+             for s in s1_sample]
+            )].
+\end{verbatim}
+
+Knowing the indices where \texttt{s1}$=$\texttt{s2} I sample 100 points in this vicinity (using the function \texttt{TakeTimeSnapshot}) and calculate the normalised cross correlation (with the function \texttt{CalcNormedCrossCorr}, which yields \texttt{cc\_s1\_s2}). I extract the location of all maxima (\texttt{ccmax}) in the cross correlated result and use this to find the corresponding indices in \texttt{s1} (\texttt{ind\_s1\_match[cc\_s1\_s2==ccmax]}) and \texttt{s2} (\texttt{ind\_s2\_match[cc\_s1\_s2==ccmax]}). Subtracting these values gives me the lag:
+
+\begin{verbatim}
+    lag=ind_s2_match[cc_s1_s2==ccmax] -
+        ind_s1_match[cc_s1_s2==ccmax]   
+\end{verbatim}
+
+\section{Results}
+One run using the method above calculated a lag of $50,082\,\mathrm{s}$, which corresponds to $16,677,306\,\mathrm{m}$ between sensor 1 and sensor 2, and is confirmed at 613 points in the sample (or $0.35\%$ of the sample population). This result took $1.62\,\mathrm{s}$ (but could take up to $1.93\,\mathrm{s}$).
+
+\subsection{Improvements}
+Visual inspection of the printed logs reveals the most expensive operation is reading in each file. In addition to experimenting with new \texttt{read} functions I could have read in only the start, or end of one signal file, say $\mathbf{f}$, then applied my method as usual, requiring me to only read in one file in full ($\mathbf{g}$). I would estimate my run time would be reduced by at most half. This suggestion only works if the vectors are of the same length and thus the files must overlap at the start or end. 
+
+Finally, taking a smaller sample (\texttt{sample\_s1}) will reduce the run time.
+
+\end{document}
