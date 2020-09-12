@@ -100,4 +100,6 @@ log.info(f'The lag between signals is: {abs(lag[0])}s, which corresponds to {abs
 log.info(f'sample of points used to confirm where s1=s2: {"%.2f" % (lag.shape[0]/s1.shape[0]*100)} % ({lag.shape[0]} points)')
 log.info(f'time taken: {"%.2f" % (endTime-startTime)} s')
 
+#44.1khz
+
 

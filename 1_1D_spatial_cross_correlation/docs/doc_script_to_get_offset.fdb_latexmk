@@ -1,14 +1,14 @@
 # Fdb version 3
-["bibtex doc_script_to_get_offset"] 1599290649 "doc_script_to_get_offset.aux" "doc_script_to_get_offset.bbl" "doc_script_to_get_offset" 1599290808
+["bibtex doc_script_to_get_offset"] 1599390357 "doc_script_to_get_offset.aux" "doc_script_to_get_offset.bbl" "doc_script_to_get_offset" 1599733959
   "/usr/local/texlive/2020/texmf-dist/bibtex/bst/revtex/apsrev4-1.bst" 1547851249 71518 fec93f06df0c073f83d2330456bd19c2 ""
-  "doc_script_to_get_offset.aux" 1599290808 593 7a938d17cbdd98a42dc97b204c845fe8 "pdflatex"
-  "doc_script_to_get_offsetNotes.bib" 1599290808 103 48ad29797468f16e2853d8797278d7af "pdflatex"
+  "doc_script_to_get_offset.aux" 1599391376 593 7a938d17cbdd98a42dc97b204c845fe8 "pdflatex"
+  "doc_script_to_get_offsetNotes.bib" 1599391376 103 48ad29797468f16e2853d8797278d7af "pdflatex"
   (generated)
   "doc_script_to_get_offset.bbl"
   "doc_script_to_get_offset.blg"
-["pdflatex"] 1599290806 "/Users/mac/Documents/Projects/computer_vision/1_1D_spatial_cross_correlation/docs/doc_script_to_get_offset.tex" "/Users/mac/Documents/Projects/computer_vision/1_1D_spatial_cross_correlation/docs/doc_script_to_get_offset.pdf" "doc_script_to_get_offset" 1599290808
-  "/Users/mac/Documents/Projects/computer_vision/1_1D_spatial_cross_correlation/docs/doc_script_to_get_offset.aux" 1599290808 593 7a938d17cbdd98a42dc97b204c845fe8 ""
-  "/Users/mac/Documents/Projects/computer_vision/1_1D_spatial_cross_correlation/docs/doc_script_to_get_offset.tex" 1599290805 5571 bfd0c9fbf67cf6de201d9b9865373e28 ""
+["pdflatex"] 1599391362 "/Users/mac/Documents/Projects/computer_vision/1_1D_spatial_cross_correlation/docs/doc_script_to_get_offset.tex" "/Users/mac/Documents/Projects/computer_vision/1_1D_spatial_cross_correlation/docs/doc_script_to_get_offset.pdf" "doc_script_to_get_offset" 1599733959
+  "/Users/mac/Documents/Projects/computer_vision/1_1D_spatial_cross_correlation/docs/doc_script_to_get_offset.aux" 1599391376 593 7a938d17cbdd98a42dc97b204c845fe8 ""
+  "/Users/mac/Documents/Projects/computer_vision/1_1D_spatial_cross_correlation/docs/doc_script_to_get_offset.tex" 1599733957 5701 e1ce5e4e999b4f5d4c15510cb60b2813 ""
   "/usr/local/texlive/2020/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2020/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2020/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -60,13 +60,13 @@
   "/usr/local/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1586288239 4811913 0be9a7e86c70a26e5e3042966bcd7097 ""
   "/usr/local/texlive/2020/texmf-var/web2c/pdftex/pdflatex.fmt" 1596692920 2432460 84f86377ba0af53b8dce865ebe6cf2f3 ""
   "/usr/local/texlive/2020/texmf.cnf" 1586288231 577 d60164b4589a341208aff7a667fbbdcb ""
-  "doc_script_to_get_offset.aux" 1599290808 593 7a938d17cbdd98a42dc97b204c845fe8 "pdflatex"
-  "doc_script_to_get_offset.bbl" 1599290649 1983 c789b8b2e2ff60989c671635ad8473c2 "bibtex doc_script_to_get_offset"
-  "doc_script_to_get_offset.tex" 1599290805 5571 bfd0c9fbf67cf6de201d9b9865373e28 ""
+  "doc_script_to_get_offset.aux" 1599391376 593 7a938d17cbdd98a42dc97b204c845fe8 "pdflatex"
+  "doc_script_to_get_offset.bbl" 1599390358 1983 c789b8b2e2ff60989c671635ad8473c2 "bibtex doc_script_to_get_offset"
+  "doc_script_to_get_offset.tex" 1599733957 5701 e1ce5e4e999b4f5d4c15510cb60b2813 ""
   (generated)
+  "/Users/mac/Documents/Projects/computer_vision/1_1D_spatial_cross_correlation/docs/doc_script_to_get_offset.pdf"
+  "doc_script_to_get_offset.pdf"
+  "doc_script_to_get_offsetNotes.bib"
+  "doc_script_to_get_offset.log"
   "doc_script_to_get_offset.aux"
   "/Users/mac/Documents/Projects/computer_vision/1_1D_spatial_cross_correlation/docs/doc_script_to_get_offset.log"
-  "doc_script_to_get_offset.log"
-  "doc_script_to_get_offsetNotes.bib"
-  "doc_script_to_get_offset.pdf"
-  "/Users/mac/Documents/Projects/computer_vision/1_1D_spatial_cross_correlation/docs/doc_script_to_get_offset.pdf"
