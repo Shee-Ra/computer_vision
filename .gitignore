@@ -2,6 +2,11 @@
 *.log
 *.gz
 *.bib
+*.aux
 
 # specific latex files (that don't work due to image issues)
 docs_script_to_get_wally.tex
+
+# my results
+# script_to_get_offset.py
+# get_wally.py
