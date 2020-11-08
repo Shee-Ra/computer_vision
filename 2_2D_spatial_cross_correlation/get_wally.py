@@ -78,6 +78,6 @@ def main(small_image='2_2D_spatial_cross_correlation/data/wallypuzzle_rocket_man
 if __name__ == "__main__":
     start = time.time()
     main(small_image='2_2D_spatial_cross_correlation/data/wallypuzzle_rocket_man.png',
-                big_image='2_2D_spatial_cross_correlation/data/wallypuzzle.png')
+         big_image='2_2D_spatial_cross_correlation/data/wallypuzzle.png')
     end = time.time()
     log.info(f'Time taken: {end-start}s')

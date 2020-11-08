@@ -35,10 +35,10 @@ def CalcNormedCrossCorr2D(pat, temp):
         pass
 
     # calulate normalised cross correlation
-    norm=np.sqrt(((pat**2).sum()) * ((temp**2).sum()))
+    norm = np.sqrt(((pat**2).sum()) * ((temp**2).sum()))
     log.debug(f'temp and pat dimensions: {temp.shape, pat.shape}')
-    cc=(pat*temp).sum()
-    return cc=cc/norm
+    cc = (pat * temp).sum()
+    return (cc / norm)
 
 
 def ImageToArray(image_path):
@@ -78,6 +78,35 @@ def ConvertRGBAtoGreyscale(im_array):
     '''converts an RGBA array into greyscale array'''
     return np.dot(im_array[...,:3],[0.299, 0.587, 0.114])
 
+
+def Make2DArraySameSize(array1, array2):
+    """ makes two arrays the same size by left/bottom pading arrays with zeros
+
+    Args:
+        array1 (2D numpy array): two arrays to be resized
+        array2 (2D numpy array): two arrays to be resized
+
+    Returns:
+        array1 (2D numpy array): resized
+        array2 (2D numpy array): resized
+    """
+    '''given a small and big array, the small array is resized 
+    to be the same size as the big array'''
+    
+    array2_pad_col = max(0, array1.shape[1] - array2.shape[1])
+    array2_pad_row = max(0, array1.shape[0] - array2.shape[0])
+    array2 = np.pad(array2, 
+                   ((0, array2_pad_row), (array2_pad_col, 0)), 
+                   'constant', constant_values=((0, 0), (0, 0)))
+    
+    array1_pad_col = max(0, array2.shape[1] - array1.shape[1])
+    array1_pad_row = max(0, array2.shape[0] - array1.shape[0])
+    array1 = np.pad(array1, 
+                   ((0, array1_pad_row), (array1_pad_col, 0)), 
+                   'constant', constant_values=((0, 0), (0, 0)))
+                    
+    return array1, array2    
+
 def GetSearchAreaInPatternArray(pattern_array):
     """returns features from pattern_array. These are searched for in the template
 
@@ -107,4 +136,4 @@ def GetSearchAreaInPatternArray(pattern_array):
     selected_column = np.random.random_integers(low=0, high=solid_row.shape[1]) # choose column
     selected_pixel = solid_row[:,selected_column:selected_column+1,:][0][0]     #
 
-    return selected_row, solid_row, count_of_transparent_pixels_to_left, selected_column, selected_pixel    
+    return selected_row, solid_row, count_of_transparent_pixels_to_left, selected_column, selected_pixel
