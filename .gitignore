@@ -2,12 +2,18 @@
 *.log
 *.gz
 *.bib
+*.bbl
+**.blg
+*.fdb_latexmk
+**.fls
 *.aux
 *.DS_Store
 
-# specific latex files (that don't work due to image issues)
-docs_script_to_get_wally.tex
+# other files
+*.vscode/*
 
-# my results
-# script_to_get_offset.py
-# get_wally.py
+# DrivingStereo images
+6_Project/data/**
+# Images for report
+4_Report/raw_images/**
+4_Report/images/**
