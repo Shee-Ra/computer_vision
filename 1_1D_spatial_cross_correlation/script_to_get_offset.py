@@ -21,7 +21,7 @@ def main(main_folder, print_results=True):
     s2 = LoadSensorData(p2)
 
     # Take a random sample of points in s1 (5% of the sample), and find matching points in s2
-    s1_sample = np.random.choice(range(s1.shape[0]), floor(s1.shape[0]*0.005), replace=False)  # take a sample from s1
+    s1_sample = np.random.choice(range(s1.shape[0]), floor(s1.shape[0] * 0.005), replace=False)  # take a sample from s1
     s1_matches = s1_sample[np.array([s1[s] in s2 for s in s1_sample])]  # find where s2 matches sample in s1
     log.debug(f'matches found: {s1_matches.shape[0]}')
 
@@ -56,11 +56,11 @@ def main(main_folder, print_results=True):
 
     # report results
     if(print_results):
-        log.info(f'The lag between signals is: {abs(lag)} points, which corresponds to {abs((lag*333)/44100)} m')
-        log.info(f'sample of points used to confirm where s1=s2: {"%.2f" % (max_freq_val/s1.shape[0]*100)} % ({max_freq_val} points)')
-        log.info(f'time taken: {"%.2f" % (endTime-startTime)} s')
+        log.info(f'The lag between signals is: {abs(lag)} points, which corresponds to {abs((lag * 333) / 44100)} m')
+        log.info(f'sample of points used to confirm where s1=s2: {"%.2f" % (max_freq_val / s1.shape[0] * 100)} % ({max_freq_val} points)')
+        log.info(f'time taken: {"%.2f" % (endTime - startTime)} s')
 
-    return endTime-startTime, round(abs((lag*333)/44100), 2)
+    return endTime - startTime, round(abs((lag * 333) / 44100), 2)
 
 
 if __name__ == "__main__":

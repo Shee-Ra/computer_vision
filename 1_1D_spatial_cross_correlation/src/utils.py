@@ -22,7 +22,7 @@ def TakeTimeSnapshot(data_1D, start=0, n=100):
         n (int, optional): size of slice. Defaults to 100.
     """
     try:
-        snapshot = data_1D[start:start+n]
+        snapshot = data_1D[start:start + n]
     except:
         print('start value or length out of bounds of input signal')
     else:
@@ -64,7 +64,7 @@ def CalcNormedCrossCorr(pat, temp):
 
     # calulate normalised cross correlation
     norm = np.sqrt(((pat**2).sum()) * ((temp**2).sum()))
-    cc = (pat*temp).sum()
+    cc = (pat * temp).sum()
     return cc / norm
 
 

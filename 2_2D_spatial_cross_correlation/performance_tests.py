@@ -17,7 +17,7 @@ def TestFunctionPerformance(runs=1000):
     for r in range(runs):
         start = time.time()
         main(small_image='2_2D_spatial_cross_correlation/data/wallypuzzle_rocket_man.png',
-                    big_image='2_2D_spatial_cross_correlation/data/wallypuzzle.png')
+             big_image='2_2D_spatial_cross_correlation/data/wallypuzzle.png')
         end = time.time()
         times.append(end-start)
 
@@ -48,7 +48,7 @@ def PlotRunTimes(times,
     plt.title('Histograms of run times', fontsize=20)
     try:
         main_folder = './'
-        file_save_path = os.path.join(main_folder,file_save_path)
+        file_save_path = os.path.join(main_folder, file_save_path)
         plt.savefig(file_save_path, bbox_inches='tight', dpi=100)
     except:
         pass

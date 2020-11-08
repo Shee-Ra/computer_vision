@@ -25,8 +25,8 @@ def TestFunctionPerformance(runs=1000):
 
 
 def PlotRunTimes(times,
-                 xt=np.linspace(1,5,5),
-                 xy=np.linspace(0,700,8),
+                 xt=np.linspace(1, 5, 5),
+                 xy=np.linspace(0, 700, 8),
                  file_save_path="1_1D_spatial_cross_correlation/data/results/run_time_1D_script_2.pdf"
                  ):
     """plots run time and saves result
